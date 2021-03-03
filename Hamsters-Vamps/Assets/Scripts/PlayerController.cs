@@ -5,9 +5,12 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     private Rigidbody _playerRb;
-    [SerializeField] float _playerInputVer;
-    [SerializeField] float _playerInputHor;
+    float _playerInputVer;
+    float _playerInputHor;
     [SerializeField] int playerSpeed=10;
+    float verticMoveDir;
+    float horizMoveDir;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -19,8 +22,9 @@ public class PlayerController : MonoBehaviour
     {
         _playerInputVer = Input.GetAxis("Vertical");
         _playerInputHor = Input.GetAxis("Horizontal");
-        _playerRb.AddForce(Vector3.forward * (playerSpeed * _playerInputVer));
-        _playerRb.AddForce(Vector3.right * (playerSpeed * _playerInputHor));
+        float verticMoveDir = (playerSpeed * _playerInputVer) * Time.fixedDeltaTime;
+        float horizMoveDir = (playerSpeed * _playerInputHor) * Time.fixedDeltaTime;
+        _playerRb.AddRelativeForce(verticMoveDir, 0, horizMoveDir);
     }
     /*
     private void OnTriggerEnter(Collider other)
