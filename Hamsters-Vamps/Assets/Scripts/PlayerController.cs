@@ -7,7 +7,7 @@ public class PlayerController : MonoBehaviour
     private Rigidbody _playerRb;
     float _playerInputVer;
     float _playerInputHor;
-    [SerializeField] int playerSpeed=10;
+    [SerializeField] int playerSpeed = 200;
     float verticMoveDir;
     float horizMoveDir;
 
@@ -24,7 +24,7 @@ public class PlayerController : MonoBehaviour
         _playerInputHor = Input.GetAxis("Horizontal");
         float verticMoveDir = (playerSpeed * _playerInputVer) * Time.fixedDeltaTime;
         float horizMoveDir = (playerSpeed * _playerInputHor) * Time.fixedDeltaTime;
-        _playerRb.AddRelativeForce(verticMoveDir, 0, horizMoveDir);
+        _playerRb.AddForce(verticMoveDir, 0, horizMoveDir);
     }
     /*
     private void OnTriggerEnter(Collider other)
